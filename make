@@ -1,0 +1,1 @@
+gcc src/*.c libft/libft.a -I includes/ -I libft/includes/ -Wall -Wextra -Werror -g -o test
