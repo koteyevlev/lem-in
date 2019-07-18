@@ -6,7 +6,7 @@
 /*   By: skrystin <skrystin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 16:59:58 by skrystin          #+#    #+#             */
-/*   Updated: 2019/07/17 20:14:12 by skrystin         ###   ########.fr       */
+/*   Updated: 2019/07/18 15:05:04 by skrystin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,21 @@ void		ft_delete_map(t_map **m)
 	free((*m)->start);
 	free((*m)->end);
 	index = 0;
-	while ((*m)->rooms[index])
+	while ((*m)->rooms && (*m)->rooms[index])
 	{
 		free((*m)->rooms[index]);
 		index++;
 	}
 	free((*m)->rooms);
 	index = 0;
-	while ((*m)->links[index])
+	while ((*m)->links && (*m)->links[index])
 	{
 		free((*m)->links[index]);
 		index++;
 	}
 	free((*m)->links);
 	index = 0;
-	while ((*m)->tab[index])
+	while ((*m)->tab && (*m)->tab[index])
 	{
 		free((*m)->tab[index]);
 		index++;
@@ -71,30 +71,80 @@ void		ft_delete_map(t_map **m)
 	free((*m)->tab);
 }
 
-void		ft_start_end(t_map **m, char *str, int *what)
+int			ft_error(char **mas, t_map **m, int i)
 {
+	while (mas && mas[i])
+		free(mas[i++]);
+	free(mas);
+	ft_delete_map(m);
+	ft_putstr("Error\n");
+	exit(0);
+}
+
+int			ft_is_valid(char **str, int what, t_map **m, char **mas)
+{
+	if (what == 1 || what == 6 || what == 5)
+	{
+		mas = ft_strsplit(*str, ' ');
+		if (!mas || !mas[0] || !mas[1] || !mas[2] || mas[3]
+			|| !ft_isint(mas[1]) || !ft_isint(mas[2]))
+			return (ft_error(mas, m, 0));
+		free(*str);
+		*str = ft_strnew(ft_strlen(mas[0]));
+		ft_strcpy(*str, mas[0]);
+		what = 0;
+		while (mas && mas[what])
+			free(mas[what++]);
+		free(mas);
+	}
+	else if (what == 2)
+	{
+		what = 0;
+		while ((*m)->rooms && (*m)->rooms[what])
+		{
+			if (ft_strncmp(str, (*m)->rooms [what], ft_strindex(str, '-') + 1))
+				break;
+		}
+		if (!(*m)->rooms || !(*m)->rooms[what])
+			return (ft_error(0, m, 0));
+		what = 0;
+		while ((*m)->rooms && (*m)->rooms[what])
+		{
+			if (ft_strncmp(ft_strstr(str, "-") + 1, (*m)->rooms[what],
+						   ft_strindex(str, '-') + 1))
+				break;
+		}
+		if (!(*m)->rooms || !(*m)->rooms[what])
+			return (ft_error(0, m, 0));
+	}
+	return (1);
+}
+
+void		ft_start_end(t_map **m, char **str, int *what)
+{
+	ft_is_valid(str, *what, m, 0);
 	if ((*what == 5 && (*m)->start) || (*what == 6 && (*m)->end))
 	{
 		ft_putstr("Error\n");
 		ft_delete_map(m);
 		exit(0);
 	}
-	else if (*what == 5 && !((*m)->start = ft_strnew(ft_strlen(str))))
+	else if (*what == 5 && !((*m)->start = ft_strnew(ft_strlen(*str))))
 	{
 		ft_putstr("Error\n");
 		ft_delete_map(m);
 		exit(0);
 	}
-	else if (*what == 6 && !((*m)->end = ft_strnew(ft_strlen(str))))
+	else if (*what == 6 && !((*m)->end = ft_strnew(ft_strlen(*str))))
 	{
 		ft_putstr("Error\n");
 		ft_delete_map(m);
 		exit(0);
 	}
 	if (*what == 5)
-		ft_strcpy((*m)->start, str);
+		ft_strcpy((*m)->start, *str);
 	if (*what == 6)
-		ft_strcpy((*m)->end, str);
+		ft_strcpy((*m)->end, *str);
 }
 
 char		**ft_cpy_plus(char **orig, char *str)
@@ -119,14 +169,16 @@ char		**ft_cpy_plus(char **orig, char *str)
 	return (res);
 }
 
-void		ft_realloc(t_map **m, char *str, int what, char **mas)
+void		ft_realloc(t_map **m, char **str, int what, char **mas)
 {
 	int		index;
 
 	index = 0;
+	if (ft_is_valid(str, what, m, 0) == 0)
+		return ;
 	if (what == 1)
 	{
-		mas = ft_cpy_plus((*m)->rooms, str);
+		mas = ft_cpy_plus((*m)->rooms, *str);
 		while ((*m)->rooms && (*m)->rooms[index])
 		{
 			free((*m)->rooms[index]);
@@ -138,7 +190,7 @@ void		ft_realloc(t_map **m, char *str, int what, char **mas)
 	}
 	else if (what == 2)
 	{
-		mas = ft_cpy_plus((*m)->links, str);
+		mas = ft_cpy_plus((*m)->links, *str);
 		while ((*m)->links && (*m)->links[index])
 		{
 			free((*m)->links[index]);
@@ -170,9 +222,9 @@ t_map		*create_map(void)
 		what = what != 0 && !ft_strstr(str, " ") && str[0] != '#' ? 2 : what;
 		if (!what && ft_isint(str) && (what = 1) == 1)
 			m->ants = ft_atoi(str);
-		else if (what == 1 || what == 2)
-			ft_realloc(&m, str, what, 0);
-		else if ((what == 5 || what == 6))
+		else if ((what == 1 || what == 2) && str[0] != '#' && str[0] != 'L')
+			ft_realloc(&m, &str, what, 0);
+		else if (((what == 5 || what == 6)) && str[0] != '#' && str[0] != 'L')
 			ft_start_end(&m, str, &what);
 		free(str);
 	}

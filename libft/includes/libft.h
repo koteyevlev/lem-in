@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skrystin <skrystin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 17:11:24 by vsanta            #+#    #+#             */
-/*   Updated: 2019/07/01 15:37:04 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/07/18 14:51:15 by skrystin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct			s_list
 	struct s_list		*next;
 }						t_list;
 
+int						ft_strindex(const char *str, int c);
 int						ft_atoi(const char *str);
 void					ft_bzero(void *s, size_t n);
 int						ft_delint(int n);

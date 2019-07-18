@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pdiedra <pdiedra@student.42.fr>            +#+  +:+       +#+         #
+#    By: skrystin <skrystin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/11 18:03:01 by vsanta            #+#    #+#              #
-#    Updated: 2019/06/25 17:30:39 by pdiedra          ###   ########.fr        #
+#    Updated: 2019/07/18 14:51:16 by skrystin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRC_NAME	= ft_memalloc.c ft_strdup.c ft_memccpy.c ft_strequ.c ft_memchr.c \
 	ft_strdel.c ft_sqrt.c ft_w_count.c ft_cleaner.c ft_pow.c \
 	ft_atoi_base.c ft_abs.c ft_ltoa.c ft_lltoa.c ft_labs.c ft_utoa.c \
 	ft_ultoa.c ft_ulltoa.c ft_itoa_base.c ft_lltoa_base.c ft_ulltoa_base.c \
-	ft_atollu_base.c get_next_line.c 
+	ft_atollu_base.c get_next_line.c ft_strindex.c
 
 
 OBJ_NAME	= $(SRC_NAME:.c=.o)
