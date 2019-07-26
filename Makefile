@@ -6,7 +6,7 @@
 #    By: skrystin <skrystin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/14 17:23:28 by pdiedra           #+#    #+#              #
-#    Updated: 2019/07/17 18:12:47 by skrystin         ###   ########.fr        #
+#    Updated: 2019/07/26 15:40:08 by skrystin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_PATH		= ./src/
 INCLUDE_PATH	= ./includes/
 LIBFT_PATH		= ./libft/
 
-SRC_NAME		= main.c
+SRC_NAME		= main.c ft_cons.c ft_create_map.c ft_create_matrix.c rooms.c ft_bfs_helper.c
 SRC				= $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ				= $(addprefix $(SRC_PATH), $(SRC_NAME:.c=.o))
 

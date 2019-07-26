@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lem_in.h                                        :+:      :+:    :+:   */
+/*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skrystin <skrystin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 16:42:40 by vsanta            #+#    #+#             */
-/*   Updated: 2019/07/17 19:32:36 by skrystin         ###   ########.fr       */
+/*   Created: 2019/05/08 17:54:21 by vsanta            #+#    #+#             */
+/*   Updated: 2019/07/18 16:33:25 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LEM_IN_H
-# define FT_LEM_IN_H
+#include "libft.h"
 
-# include "libft.h"
-
-typedef	struct		s_map
+int		ft_free_array(char **array, int ret_val)
 {
-	char			**rooms;
-	char			*start;
-	char			*end;
-	char			**links;
-	int				q_rooms;
-	int				ants;
-	int				**tab;
-}					t_map;
+	int i;
 
-
-#endif
+	i = 0;
+	while (array && array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	if (array && *array)
+		free(array);
+	return (ret_val);
+}

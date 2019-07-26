@@ -6,7 +6,7 @@
 /*   By: skrystin <skrystin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 17:11:24 by vsanta            #+#    #+#             */
-/*   Updated: 2019/07/18 14:51:15 by skrystin         ###   ########.fr       */
+/*   Updated: 2019/07/26 15:44:44 by skrystin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int						ft_tolower(int c);
 int						ft_toupper(int c);
 int						ft_sqrt(int nb);
 size_t					ft_w_count(char const *s, char c);
-int						ft_cleaner(void **ar1, void ***ar2, void ****ar3);
+int						ft_free_array(char **array, int ret_val);
 double					ft_pow(double base, double exp);
 long double				ft_powl(long double base, long double exp);
 int						ft_atoi_base(const char *str, int base);

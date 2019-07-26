@@ -6,7 +6,7 @@
 #    By: skrystin <skrystin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/11 18:03:01 by vsanta            #+#    #+#              #
-#    Updated: 2019/07/18 14:51:16 by skrystin         ###   ########.fr        #
+#    Updated: 2019/07/26 16:44:42 by skrystin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRC_NAME	= ft_memalloc.c ft_strdup.c ft_memccpy.c ft_strequ.c ft_memchr.c \
 	ft_lstdel.c ft_strcat.c ft_strsub.c ft_lstdel_content.c ft_strchr.c \
 	ft_strtrim.c ft_lstdelone.c ft_strclr.c ft_tolower.c ft_lstiter.c \
 	ft_strcmp.c ft_toupper.c ft_lstmap.c ft_strcpy.c ft_lstnew.c \
-	ft_strdel.c ft_sqrt.c ft_w_count.c ft_cleaner.c ft_pow.c \
+	ft_strdel.c ft_sqrt.c ft_w_count.c ft_free_array.c ft_pow.c \
 	ft_atoi_base.c ft_abs.c ft_ltoa.c ft_lltoa.c ft_labs.c ft_utoa.c \
 	ft_ultoa.c ft_ulltoa.c ft_itoa_base.c ft_lltoa_base.c ft_ulltoa_base.c \
 	ft_atollu_base.c get_next_line.c ft_strindex.c
