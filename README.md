@@ -2,7 +2,7 @@
 
 Graph algo project. Created with nalexand at 42 school. The main task - find all optimal ways to push ants from A to B as quick as possible, they must not overlap . To find all needed paths to the ants we use algorithms Dijkstra and Suurbale. To read [more](https://en.wikipedia.org/wiki/Suurballe%27s_algorithm)
 
-**Quick start with visualisition**
+## Quick start with visualisition**
 
   make
   
